@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Что в кино">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <title>Что в кино</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Что в кино</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/api">API</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         <p>
+           На сайте доступно публичное api в json формате. </p>
+           <p> Для получения данных о всех фильмах перейдите по адресу <a href='/api/movies_list'>весь список</a>.</p>
+           <p>Для получения данных по одному фильму введите в адресной строке http://domain.tld/api/movie/number, где number — обычно шестизначное число.
+         </p>
+         <p>Пример:</p>
+         <pre>$ curl -I http://localhost:5000/api/movie/226062/
+HTTP/1.0 200 OK
+Content-Type: application/json; charset=utf-8
+Content-Length: 6506
+Server: Werkzeug/0.11.11-dev Python/3.5.2+
+Date: Sun, 08 Jan 2017 10:11:33 GMT
+</pre>
+        </div>
+      </div>
+    <div class="col-md-12 disclaimer"><span class="bg-warning">Настоящий сайт создан в исключительно учебных целях. Все сведения о фильмах взяты с сайта</span> <a href="http://www.afisha.ru">Афиша</a>.</div>
+    </div><!-- /.container -->
+
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-theme.min.css.map') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.css.map') }}"></script>
+  </body>
+</html>
