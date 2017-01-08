@@ -7,30 +7,76 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Что в кино">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <title>Что в кино</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
   </head>
 
   <body>
 
-    <nav class="navbar">
+    <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">Что в кино</a>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/api">API</a></li>
+        </ul>
       </div>
     </nav>
 
     <div class="container">
-      <p>There Will Be Films</p>
+      <div class="row">
+      {% for movie in movies %}
+        <div class="col-md-12 movie">
+          <div class="col-md-5">
+            <img src="{{ movie['image'] }}" class="img-rounded" alt="{{ movie['title'] }}" width="100%">
+          </div>
+          <div class="col-md-7">
+            <h3><a href="{{ movie['url'] }}">{{ movie['title'] }}</a></h3>
+            <p class="text-muted description">{{ movie['description'] }}</p>
+            <ul>
+              <li><b>Режиссёр:</b> {{ movie['director'] }}</li>
+              <li><b>Продолжительность:</b> {{ movie['duration'] }} мин.</li>
+              <li><b>Год:</b> {{ movie['year'] }}</li>
+              <li><b>Жанр:</b> {{ movie['genre'] }}</li>
+              <li><b>Количество оценок:</b> {{ movie['rate_count'] }}</li>
+              <li><b>Рейтинг:</b> {{ movie['rate_value'] }}<span class="stars">{{ movie['rate_value'] }}</span></li>
+            </ul>
+            <p><b>Описание:</b></p>
+            <p>{{ movie['text'] }}</p>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    <div class="col-md-12 disclaimer"><span class="bg-warning">Настоящий сайт создан в исключительно учебных целях. Все сведения о фильмах взяты с сайта</span> <a href="http://www.afisha.ru">Афиша</a>.</div>
     </div><!-- /.container -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-theme.min.css.map') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.css.map') }}"></script>
+    <script>
+      $.fn.stars = function() {
+        return $(this).each(function() {
+          // Get the value
+          var val = parseFloat($(this).html());
+          // Make sure that the value is in 0 - 5 range, multiply to get width
+          var size = Math.max(0, (Math.min(5, val))) * 16;
+          // Create stars holder
+          var $span = $('<span />').width(size);
+          // Replace the numerical value with stars
+          $(this).html($span);
+        });
+      };
+      $(function() {
+        $('span.stars').stars();
+      });
+    </script>
   </body>
 </html>
