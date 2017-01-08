@@ -1,0 +1,31 @@
+.movie {
+	background-color: #f8f8f8;
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+.movie div img {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.description {
+	margin-bottom: 15px;
+	margin-top: -10px;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+span.stars, span.stars span {
+    display: block;
+    background: url(/static/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+span.stars span {
+    background-position: 0 0;
+}
+.disclaimer {
+	margin-bottom: 50px;
+	font-size: 20px;
+}
