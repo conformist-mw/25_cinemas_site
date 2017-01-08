@@ -32,7 +32,7 @@ def collect_movie_data(movie_page):
             'title': raw_data['name'],
             'url': raw_data['url'],
             'rate_count': rate_count,
-            'rate_value': rate_value
+            'rate_value': rate_value,
             'duration': duration,
             'director': director,
             'year': year,
