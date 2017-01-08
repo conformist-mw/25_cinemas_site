@@ -4,15 +4,16 @@
 	border-radius: 5px;
 	margin-bottom: 20px;
 }
-.movie div img {
-	margin-top: 30px;
-	margin-bottom: 30px;
-}
 .description {
 	margin-bottom: 15px;
 	margin-top: -10px;
 }
-ul {
+.movie_img {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 100%;
+}
+.movie_info {
 	list-style-type: none;
 	padding: 0;
 }
